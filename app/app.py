@@ -1,7 +1,7 @@
 from app.database import engine
 from fastapi import Depends, FastAPI
 from app.models import user_orm
-from app.routes.user import user_router
+from app.routes.user_route import user_router
 
 
 app = FastAPI()
