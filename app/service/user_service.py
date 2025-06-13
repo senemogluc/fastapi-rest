@@ -3,9 +3,10 @@ from uuid import uuid4
 from app.schemas.enums.gender import Gender
 from app.models.user_orm import User
 from sqlalchemy.orm import Session
+from app.schemas.requests.user_create_request import CreateUserRequest
 
 
-def create(user: User, db: Session):
+def create(user: CreateUserRequest, db: Session):
     db_user = User(
         id=uuid4(),
         first_name=user.first_name,
@@ -17,7 +18,7 @@ def create(user: User, db: Session):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return f'User is created with id: {db_user.id}'
+    return db_user
 
 def get_all(db: Session):
     return db.query(User).all()
