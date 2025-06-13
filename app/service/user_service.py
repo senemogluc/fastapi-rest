@@ -5,7 +5,7 @@ from app.models.user_orm import User
 from sqlalchemy.orm import Session
 
 
-def create_user(user: User, db: Session):
+def create(user: User, db: Session):
     db_user = User(
         id=uuid4(),
         first_name=user.first_name,
@@ -18,4 +18,6 @@ def create_user(user: User, db: Session):
     db.commit()
     db.refresh(db_user)
     return f'User is created with id: {db_user.id}'
-    
+
+def get_all(db: Session):
+    return db.query(User).all()
