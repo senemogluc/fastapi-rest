@@ -17,5 +17,5 @@ def create_user(user: User, db: Session):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return f'User is created with first name: {db_user.first_name}'
+    return f'User is created with id: {db_user.id}'
     
